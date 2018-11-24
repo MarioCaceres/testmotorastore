@@ -20,6 +20,7 @@ Route::view('/recent-activity', 'recent-activity');
 Route::view('/stock', 'stock');
 Route::view('/sales', 'sales');
 Route::view('/users-admin', 'users-admin');
+Route::view('/new-sale', 'new-sale');
 //
 
 //ONLY EXAMPLES REMOVE BEFORE GO TO PRODUCTION !

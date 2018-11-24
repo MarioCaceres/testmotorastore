@@ -12,7 +12,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Ventas</strong>
-                                <a href="forms-basic.html" style="margin-left: 100px;" type="button" class="btn btn-primary">Añadir Venta</a>
+                                <a href="{{url('new-sale')}}" style="margin-left: 100px;" type="button" class="btn btn-primary">Añadir Venta</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
