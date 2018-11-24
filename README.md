@@ -1,1 +1,0 @@
-# motora-store
