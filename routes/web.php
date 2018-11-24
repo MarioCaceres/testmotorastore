@@ -15,10 +15,14 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+//CHANCE AFTER CREATE CONTROLLERS TO POST, GET, ETC ROUTES
+Route::view('/recent-activity', 'recent-activity');
+Route::view('/stock', 'stock');
+Route::view('/sales', 'sales');
+Route::view('/users-admin', 'users-admin');
+//
 
-
-//ONLY EXAMPLES REMOVE BEFORE GO TO PRODUCTION
-
+//ONLY EXAMPLES REMOVE BEFORE GO TO PRODUCTION !
 Route::view('/widgets', 'examples/widgets');
 Route::view('/charts-chartjs', 'examples/charts-chartjs');
 Route::view('/charts-flot', 'examples/charts-flot');
@@ -44,3 +48,4 @@ Route::view('/ui-progressbar', 'examples/ui-progressbar');
 Route::view('/ui-switches', 'examples/ui-switches');
 Route::view('/ui-tabs', 'examples/ui-tabs');
 Route::view('/ui-typgraphy', 'examples/ui-typgraphy');
+//
