@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'id_permiso'
+
     ];
 
     /**
@@ -25,6 +29,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token'
     ];
+
+    public function permiso()
+    {
+        return $this->belongsTo(permiso::class,'id_permiso');
+    }
+    public function historial()
+    {
+        return $this->hasMany(historial::class,'id_usuario','id');
+    }
+    public function venta()
+    {
+        return $this->hasMany(venta::class,'id_usuario','id');
+    }
 }
