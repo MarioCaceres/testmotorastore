@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class venta extends Model
+class permiso extends Model
 {
-    public $table = "ventas";
+    public $table = "permiso";
         protected $fillable = [
         'canal',
         'fecha',
