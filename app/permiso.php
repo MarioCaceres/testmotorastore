@@ -8,19 +8,10 @@ class permiso extends Model
 {
     public $table = "permiso";
         protected $fillable = [
-        'canal',
-        'fecha',
-        'es',
-        'id_detalle_venta',
-        'id_user'
+        'tipo'
     ];
-    
-    public function user()
+    public function usuarios()
     {
-        return $this->hasmany(User::class,'id_detalle_venta');
-    }
-    public function secciones()
-    {
-        return $this->hasOne(seccion::class,'id_user','id');
+        return $this->hasMany(User::class,'id_permiso','id');
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class envioCorreo extends Notification
 {
+    protected $e;
     use Queueable;
 
     /**
@@ -16,9 +17,9 @@ class envioCorreo extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(stock $e)
     {
-        //
+        $this->e=$e;
     }
 
     /**
