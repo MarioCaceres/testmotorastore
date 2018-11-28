@@ -10,7 +10,7 @@ class detalle_venta extends Model
         protected $fillable = [
         'cantidad',
         'id_producto',
-        'id_cliente'
+        'id_venta'
     ];
     
     public function venta()
@@ -20,9 +20,5 @@ class detalle_venta extends Model
     public function producto()
     {
         return $this->hasMany(producto::class,'id_producto','id');
-    }
-    public function cliente()
-    {
-        return $this->hasOne(cliente::class,'id_cliente','id');
     }
 }

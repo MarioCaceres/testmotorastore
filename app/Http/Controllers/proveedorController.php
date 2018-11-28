@@ -16,7 +16,8 @@ class proveedorController extends Controller
     }
     public function store()
     {
-
+        $proveedor = new proveedor($request->all());
+        $proveedor->save();
     }
     public function show()
     {

@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function permiso()
     {
-        return $this->belongsTo(permiso::class,'id_permiso');
+        return $this->belongsTo(permiso::class,'id_permiso','id');
     }
     public function historial()
     {

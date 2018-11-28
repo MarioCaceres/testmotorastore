@@ -19,14 +19,13 @@ class Venta extends Migration
             $table->date('fecha');
             $table->integer('estado');
             $table->integer('id_usuario')->unsigned();
-            $table->integer('id_detalle_venta')->unsigned();
-  
+            $table->integer('id_cliente')->unsigned();
         });
         Schema::table('venta', function($table) {
-        $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
         });
         Schema::table('venta', function($table) {
-        $table->foreign('id_detalle_venta')->references('id')->on('detalle_venta')->onDelete('cascade');
+            $table->foreign('id_cliente')->references('id')->on('cliente')->onDelete('cascade');
         });
     }
 

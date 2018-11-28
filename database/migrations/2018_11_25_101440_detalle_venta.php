@@ -17,15 +17,15 @@ class DetalleVenta extends Migration
             $table->increments('id');
             $table->integer('cantidad');
             $table->integer('id_producto')->unsigned();
-            $table->integer('id_cliente')->unsigned();
+            $table->integer('id_venta')->unsigned();
 
         });
         Schema::table('detalle_venta', function($table) {
             $table->foreign('id_producto')->references('id')->on('producto')->onDelete('cascade');
         });
         Schema::table('detalle_venta', function($table) {
-            $table->foreign('id_cliente')->references('id')->on('cliente')->onDelete('cascade');
-        });
+            $table->foreign('id_venta')->references('id')->on('venta')->onDelete('cascade');
+        });    
     }
 
     /**

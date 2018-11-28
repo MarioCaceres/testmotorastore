@@ -16,7 +16,8 @@ class clienteController extends Controller
     }
     public function store()
     {
-
+        $cliente = new cliente($request->all());
+        $cliente->save();
     }
     public function show()
     {

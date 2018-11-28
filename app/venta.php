@@ -12,15 +12,16 @@ class venta extends Model
         'fecha',
         'estado',
         'id_detalle_venta',
-        'id_usuario'
+        'id_usuario',
+        'id_cliente'
     ];
     
     public function user()
     {
         return $this->hasOne(User::class,'id_usuario','id');
     }
-    public function detalle_venta()
+    public function cliente()
     {
-        return $this->hasMany(detalle_venta::class,'id_detalle_venta','id');
+        return $this->hasOne(cliente::class,'id_cliente','id');
     }
 }
