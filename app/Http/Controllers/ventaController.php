@@ -14,13 +14,19 @@ class ventaController extends Controller
     {
 
     }
-    public function store($idproducto,$cantidad,$canal)
+    public function store($idproducto,$cantidad,$canal,$n_orden)
     {
         $idUser = Auth::id();
     	$venta = new venta($request->all());
     	$venta->id_usuario = $idUser;
         $venta->fecha = $dateTime;
+        $venta->canal = $canal;
+        $venta->n_orden = $n_orden;
     	$venta->save();
+        $detalleventa = new detalleventa($request->all());
+        $detalleventa->id_producto = $idproducto;
+        $detalleventa->cantidad = $cantidad;
+        $detalleventa->save();
     	$historial = new historialController();
       	$historial->registrar("venta", "crear venta", "-", "-", $venta->id);
 

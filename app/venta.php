@@ -11,7 +11,7 @@ class venta extends Model
         'canal',
         'fecha',
         'estado',
-        'id_detalle_venta',
+        'n_orden', 
         'id_usuario',
         'id_cliente'
     ];
