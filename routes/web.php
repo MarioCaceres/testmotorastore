@@ -25,4 +25,4 @@ Route::resource('venta','ventaController');
 //Route::name
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'apiController@saveApiData')->name('home');

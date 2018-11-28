@@ -43,7 +43,7 @@ class productoController extends Controller
         $producto = producto::find($id_producto);
         historial = new historialController();
         $historial->registrar("producto", "modificar stock","stock",$producto->stock, $atributo);
-        $producto->stock = $atributo;
+        $producto->stock = $producto->stock - $atributo;
         $producto->save();
         return redirect()->route('users.index')->with('success', true)->with('message','Producto modificado exitosamente');
     }
