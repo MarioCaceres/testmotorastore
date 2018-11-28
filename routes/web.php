@@ -19,11 +19,11 @@ Route::resource('usuario','userController');
 Route::resource('historial','historialController');
 Route::resource('producto','productoController');
 Route::resource('venta','ventaController');
-Route::resource('api','apiController@saveApiData');
+Route::resource('api','apiController');
 
 //Route::get
 
 //Route::name
 
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'apiController@saveApiData')->name('home');

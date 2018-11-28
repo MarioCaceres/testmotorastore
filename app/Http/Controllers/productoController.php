@@ -45,6 +45,10 @@ class productoController extends Controller
         $historial->registrar("producto", "modificar stock","stock",$producto->stock, $atributo);
         $producto->stock = $producto->stock - $atributo;
         $producto->save();
+        if($producto->stock <= 5){
+            $recipiente = User::find($elegidos->id_usuario);
+            $recipiente->notify(new EnvioCorreo($e));
+        }
         return redirect()->route('users.index')->with('success', true)->with('message','Producto modificado exitosamente');
     }
     public function editarNombre($id_producto,$atributo)

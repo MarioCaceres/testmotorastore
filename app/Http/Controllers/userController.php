@@ -63,7 +63,7 @@ class userController extends Controller
     {
         $user = User::find($id_usuario);
         $historial = new historialController();
-        $historial->registrar("usuario", "bloquiar usuario","activo", "0", "1");
+        $historial->registrar("usuario", "bloquear usuario","activo", "0", "1");
         $user->activo =0;
         $user->save();
         return redirect()->route('users.index')->with('success', true)->with('message','Usuario bloqueado exitosamente');

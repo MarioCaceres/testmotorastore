@@ -14,7 +14,7 @@ class ventaController extends Controller
     {
 
     }
-    public function store($name,$cantidad,$canal,$n_orden,$dateTime,$estado,$c_producto)
+    public function store($items,$canal,$n_orden,$dateTime,$estado)
     {
         $idUser = Auth::id();
     	$venta = new venta($request->all());
@@ -45,10 +45,9 @@ class ventaController extends Controller
     {
 
     }
-    public function update($id_usuario)
+    public function update()
     {
-		$recipiente = User::find($elegidos->id_usuario);
-        $recipiente->notify(new EnvioCorreo($e));
+
     }
     public function destroy()
     {

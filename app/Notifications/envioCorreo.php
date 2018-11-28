@@ -42,9 +42,11 @@ class envioCorreo extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Peligro en las existencias de un producto')
+                    ->line($notifiable->nombre)
+                    ->line("Un producto a disminuido sus existencias y necesita de su atencion.")
+                    ->action('Ir al inventario',url('http://127.0.0.1:8000/'))
+
     }
 
     /**
