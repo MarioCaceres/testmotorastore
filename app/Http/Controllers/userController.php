@@ -41,7 +41,7 @@ class userController extends Controller
     {
         
         $user = User::find($id_usuario);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("usuario", "modificar tipo","tipo",$user->tipo, $atributo);
         $user->tipo = $atributo;
         $user->save();
@@ -52,7 +52,7 @@ class userController extends Controller
     public function activar()
     {
         $user = User::find($id_usuario);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("usuario", "activar usuario","activo", "1", "0");
         $user->activo =1;
         $user->save();
@@ -62,7 +62,7 @@ class userController extends Controller
     public function desactivar()
     {
         $user = User::find($id_usuario);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("usuario", "bloquiar usuario","activo", "0", "1");
         $user->activo =0;
         $user->save();

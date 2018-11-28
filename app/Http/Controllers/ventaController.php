@@ -26,14 +26,15 @@ class ventaController extends Controller
     	$venta->save();
         $producto = new productoController();
 
-        while($c_producto >= 0){
-            $detalleventa = new detalleventa($request->all());
-            $producto = producto::all()->where('name', '=', $name[$c_producto])->first();
-            $detalleventa->id_producto = $producto->id;
-            $detalleventa->cantidad = $cantidad[$c_producto];
-            $detalleventa->save();
-            $producto->modificarstock($producto->id, $cantidad[$c_producto]]);
-            $c_producto = $c_producto - 1;
+        foreach($name as $nombre){
+            foreach($cantidad as $cant){
+                $detalleventa = new detalleventa($request->all());
+                $producto = producto::all()->where('name', '=', $nombre)->first();
+                $detalleventa->id_producto = $producto->id;
+                $detalleventa->cantidad = $cant;
+                $detalleventa->save();
+                $producto->modificarstock($producto->id, $cant);               
+            }
         }
 
     	$historial = new historialController();
@@ -46,7 +47,6 @@ class ventaController extends Controller
     }
     public function update($id_usuario)
     {
-		if()
 		$recipiente = User::find($elegidos->id_usuario);
         $recipiente->notify(new EnvioCorreo($e));
     }

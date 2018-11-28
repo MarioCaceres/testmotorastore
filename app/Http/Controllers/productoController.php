@@ -32,7 +32,7 @@ class productoController extends Controller
     public function editarPrecio($id_producto,$atributo)
     {
         $producto = producto::find($id_producto);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("producto", "modificar precio","precio",$producto->precio, $atributo);
         $producto->precio = $atributo;
         $producto->save();
@@ -41,7 +41,7 @@ class productoController extends Controller
     public function modificarstock($id_producto,$atributo)
     {
         $producto = producto::find($id_producto);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("producto", "modificar stock","stock",$producto->stock, $atributo);
         $producto->stock = $producto->stock - $atributo;
         $producto->save();
@@ -50,7 +50,7 @@ class productoController extends Controller
     public function editarNombre($id_producto,$atributo)
     {
         $producto = producto::find($id_producto);
-        historial = new historialController();
+        $historial = new historialController();
         $historial->registrar("producto", "modificar nombre","nombre",$producto->nombre, $atributo);
         $producto->nombre = $atributo;
         $producto->save();
