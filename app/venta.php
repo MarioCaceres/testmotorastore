@@ -10,6 +10,7 @@ class venta extends Model
         protected $fillable = [
         'canal',
         'fecha',
+        'estado',
         'id_detalle_venta',
         'id_usuario'
     ];

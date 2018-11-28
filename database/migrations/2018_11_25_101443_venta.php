@@ -17,6 +17,7 @@ class Venta extends Migration
             $table->increments('id');
             $table->integer('canal');
             $table->date('fecha');
+            $table->integer('estado');
             $table->integer('id_usuario')->unsigned();
             $table->integer('id_detalle_venta')->unsigned();
   
