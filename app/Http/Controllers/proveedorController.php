@@ -10,9 +10,18 @@ class proveedorController extends Controller
     {
 
     }
-    public function create()
+    public function create($nombre,$telefono,$direccion,$suministro,$correo)
     {
-
+        
+        $proveedor = new proveedor();
+        $proveedor->nombre = $nombre;
+        $proveedor->telefono = $telefono;
+        $proveedor->direccion = $direccion;
+        $proveedor->suministro = $suministro;
+        $proveedor->correo = $correo;
+        $proveedor->save();
+        $historial = new historialController();
+        $historial->registrar("proveedor", "crear proveedor", "-", "-", $proveedor->id);
     }
     public function store()
     {

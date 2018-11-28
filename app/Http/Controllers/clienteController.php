@@ -10,9 +10,16 @@ class clienteController extends Controller
     {
 
     }
-    public function create()
+    public function create($nombre,$telefono,$direccion,$correo)
     {
-
+        $cliente = new cliente();
+        $cliente->nombre = $nombre;
+        $cliente->telefono = $telefono;
+        $cliente->direccion = $direccion;
+        $cliente->correo = $correo;
+        $cliente->save();
+        $historial = new historialController();
+        $historial->registrar("cliente", "crear proveedor", "-", "-", $proveedor->id);
     }
     public function store()
     {
