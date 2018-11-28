@@ -14,16 +14,16 @@ class ventaController extends Controller
     {
 
     }
-    public function store(Request $request)
+    public function store($idproducto,$cantidad,$canal)
     {
-    	$idUser = Auth::id();
+        $idUser = Auth::id();
     	$venta = new venta($request->all());
     	$venta->id_usuario = $idUser;
+        $venta->fecha = $dateTime;
     	$venta->save();
-
     	$historial = new historialController();
-      	$historial->registrar("venta", "crear", "canal", "-", $catastrofe->canal);
-      	$historial->registrar("venta", "crear", "fecha", "-", $catastrofe->fecha);
+      	$historial->registrar("venta", "crear venta", "-", "-", $venta->id);
+
     }
     public function show()
     {

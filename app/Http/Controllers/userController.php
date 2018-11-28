@@ -37,14 +37,36 @@ class userController extends Controller
     {
 
     }
-    public function update()
+    public function cambiartipo($id_usuario,$atributo)
     {
-        User::find($id)->update($request->all());
+        
+        $user = User::find($id_usuario);
+        historial = new historialController();
+        $historial->registrar("usuario", "modificar usuario","tipo",$user->tipo, $atributo);
+        $user->tipo = $atributo;
+        $user->save();
         return redirect()->route('users.index')->with('success', true)->with('message','Usuario modificado exitosamente');
+
+        
     }
-    public function destroy()
+    public function activar()
     {
-        User::find($id)->delete();
+        $user = User::find($id_usuario);
+        historial = new historialController();
+        $historial->registrar("usuario", "activar usuario","activo", "1", "0");
+        $user->save();
+        $user->activo =1;
+        return redirect()->route('users.index')->with('success', true)->with('message','Usuario activado exitosamente');
+
+    }
+    public function desactivar()
+    {
+        $user = User::find($id_usuario);
+        historial = new historialController();
+        $historial->registrar("usuario", "bloquiar usuario","activo", "0", "1");
+        $user->save();
+        $user->activo =0;
         return redirect()->route('users.index')->with('success', true)->with('message','Usuario bloqueado exitosamente');
+
     }
 }
