@@ -4,25 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class detalle_venta extends Model
+class contacto extends Model
 {
     public $table = "detalle_venta";
         protected $fillable = [
-        'cantidad',
         'id_producto',
-        'id_cliente'
+        'id_proveedor'
     ];
     
-    public function venta()
+    public function proveedor()
     {
-        return $this->hasOne(venta::class,'id_venta','id');
+        return $this->hasMany(proveedor::class,'id_proveedor','id');
     }
     public function producto()
     {
         return $this->hasMany(producto::class,'id_producto','id');
-    }
-    public function cliente()
-    {
-        return $this->hasOne(cliente::class,'id_cliente','id');
     }
 }

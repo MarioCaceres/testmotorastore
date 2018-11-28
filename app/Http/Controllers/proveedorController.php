@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class productoController extends Controller
+class proveedorController extends Controller
 {
     public function index()
     {
@@ -14,10 +14,9 @@ class productoController extends Controller
     {
 
     }
-    public function store(Request $request)
+    public function store()
     {
-        $producto = new producto($request->all());
-        $producto->save();
+
     }
     public function show()
     {

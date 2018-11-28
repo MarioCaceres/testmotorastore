@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Permiso extends Migration
+class Proveedor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class Permiso extends Migration
      */
     public function up()
     {
-        Schema::create('permiso', function (Blueprint $table) {
+        Schema::create('proveedor', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tipo');
+            $table->string('nombre');
+            $table->integer('telefono');
+            $table->string('direccion');
+            $table->string('suministro');
+            $table->string('correo');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,6 +30,6 @@ class Permiso extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permiso');
+        Schema::dropIfExists('proveedor');
     }
 }
