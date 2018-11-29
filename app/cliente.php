@@ -13,7 +13,7 @@ class cliente extends Model
         'direccion',
         'correo'
     ];
-    
+    public $timestamps = false;
     public function detalle_venta()
     {
         return $this->hasMany(detalle_venta::class,'id_cliente','id');
