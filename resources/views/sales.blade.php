@@ -20,6 +20,7 @@
                                         <tr>
                                             <th>Cliente</th>
                                             <th>Articulo</th>
+                                            <th>Cantidad</th>
                                             <th>Dirección</th>
                                             <th>Valor</th>
                                             <th>Estado</th>
@@ -27,7 +28,18 @@
                                     </thead>
                                     <tbody>
 
-                                        
+                                        @foreach($arreglo as $key=>$value)
+                                        <tr>
+                                            
+                                            <td>{{$value->Cliente}}</td>
+                                            <td>{{$value->Articulo}}</td>
+                                            <td>{{$value->Cantidad}}</td>
+                                            <td>{{$value->Direccion}}</td>
+                                            <td>{{$value->Valor}}</td>
+                                            <td>{{$value->Estado}}</td>
+                                            
+                                        </tr>
+                                        @endforeach
                                         
                                     </tbody>
                                 </table>

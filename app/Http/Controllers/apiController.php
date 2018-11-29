@@ -16,8 +16,11 @@ class apiController extends Controller {
 
 	public function store(Request $request)
     {
+        
+        
     	$post = $request;
     	$venta = venta::all()->where('n_orden', '=', $post['number']);
+        
         if($venta != '[]'){
         	echo "Ya se realizo la venta -";
         	echo $venta;
@@ -25,6 +28,8 @@ class apiController extends Controller {
         }
         $nombre = array();
         $cantidad = array();
+        echo $post['line_items'];
+        return 1;
 		foreach($post->line_items as $item){
 			$producto = producto::all()->where('nombre', '=', $item['name'])->first();
         	if($producto == '[]'){

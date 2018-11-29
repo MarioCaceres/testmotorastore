@@ -41,15 +41,15 @@ class DatabaseSeeder extends Seeder
         DB::table('producto')->insert([
             ['nombre' => 'motora one',
             'precio' => 30000,
-            'stock' => 10,
+            'stock' => 55,
             ],
             ['nombre' => 'motora two',
             'precio' => 50000,
-            'stock' => 4,
+            'stock' => 30,
             ],
             ['nombre' => 'motora three',
             'precio' => 15000,
-            'stock' => 0,
+            'stock' => 100,
             ],
         ]);
 

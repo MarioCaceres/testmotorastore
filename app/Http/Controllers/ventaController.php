@@ -14,9 +14,11 @@ class ventaController extends Controller
 {
     public function index()
     {
-        $ventas = venta::all();
-        $detalles = $ventas = detalle_venta::all();
-        return view('sales',compact('ventas','detalles'));
+        
+        $arreglo = $this->salesList();
+
+        //dd($ventas)
+        return view('sales',compact('arreglo'));
     }
     public function create()
     {
@@ -51,8 +53,8 @@ class ventaController extends Controller
                 $prod->modificarstock($producto->id, $cant);               
             }
         }
-    	$historial = new historialController();
-      	$historial->registrar("venta", "crear venta", "-", "-", $venta->id,$idUser);
+        $historial = new historialController();
+        $historial->registrar("venta", "crear venta", "-", "-", $venta->id,$idUser);
 
     }
     public function show()
@@ -137,7 +139,36 @@ class ventaController extends Controller
             $prod->stock = $prod->stock - $item->cantidad;
             $prod->save();
         }
-        return view('sales');
+        $arreglo = $this->salesList();
+        return view('sales',compact('arreglo'));
 
+    }
+
+    private function salesList(){
+        $detalles = detalle_venta::all();
+        $arreglo = [];
+        foreach ($detalles as $key => $value) {
+            $venta = venta::find($value->id_venta);
+            $cliente = cliente::find($venta->id_cliente);
+            $producto = producto::find($value->id_producto);
+
+            $item = new \stdClass();
+            $item->Cliente=$cliente->nombre;
+            $item->Articulo=$producto->nombre;
+            $item->Cantidad=$value->cantidad;
+            $item->Direccion=$cliente->direccion;
+            $item->Valor=$value->cantidad * $producto->precio;
+            if ($venta->estado==1) {
+                $item->Estado="Listo para enviar";
+            }
+            else{
+                $item->Estado ="Desconocido";
+            }
+            $arreglo[$key] = $item;
+
+        }
+
+        //dd($ventas)
+        return $arreglo;
     }
 }
