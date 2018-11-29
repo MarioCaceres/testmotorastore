@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\producto;
 use App\cliente;
+use App\venta;
+use App\detalle_venta;
+
 
 class ventaController extends Controller
 {
@@ -16,31 +20,37 @@ class ventaController extends Controller
     {
 
     }
-    public function store($items,$canal,$n_orden,$dateTime,$estado)
+    public function store($name, $cantidad, $canal, $n_orden, $dateTime, $estado, $id, $id_cliente)
     {
-        $idUser = Auth::id();
-    	$venta = new venta($request->all());
-    	$venta->id_usuario = $idUser;
-        $venta->fecha = $dateTime;
+        if($id == ''){
+           $idUser = Auth::id(); 
+        }
+        else{
+            $idUser = $id;
+        }
+        $venta = new venta();
         $venta->canal = $canal;
-        $venta->n_orden = $n_orden;
+        $venta->fecha = $dateTime;
         $venta->estado = $estado;
-    	$venta->save();
-        $producto = new productoController();
+        $venta->n_orden = $n_orden;
+        $venta->id_usuario = $idUser;
+        $venta->id_cliente = $id_cliente;
+        $venta->save();
+        $prod = new productoController();
 
         foreach($name as $nombre){
             foreach($cantidad as $cant){
-                $detalleventa = new detalleventa($request->all());
-                $producto = producto::all()->where('name', '=', $nombre)->first();
+                $detalleventa = new detalle_venta();
+                $producto = producto::all()->where('nombre', '=', $nombre)->first();
                 $detalleventa->id_producto = $producto->id;
                 $detalleventa->cantidad = $cant;
+                $detalleventa->id_venta = $venta->id;
                 $detalleventa->save();
-                $producto->modificarstock($producto->id, $cant);               
+                $prod->modificarstock($producto->id, $cant);               
             }
         }
-
     	$historial = new historialController();
-      	$historial->registrar("venta", "crear venta", "-", "-", $venta->id);
+      	$historial->registrar("venta", "crear venta", "-", "-", $venta->id,$idUser);
 
     }
     public function show()

@@ -65,10 +65,10 @@
   "line_items": [
     {
       "id": 315,
-      "name": "mochila1",
+      "name": "motora two",
       "product_id": 1,
       "variation_id": 0,
-      "quantity": 2,
+      "quantity": 1,
       "tax_class": "",
       "subtotal": "6.00",
       "subtotal_tax": "0.45",
@@ -87,7 +87,7 @@
     },
     {
       "id": 316,
-      "name": "mochila2",
+      "name": "motora one",
       "product_id": 2,
       "variation_id": 23,
       "quantity": 1,

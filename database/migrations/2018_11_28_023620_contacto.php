@@ -15,6 +15,7 @@ class Contacto extends Migration
     {
         Schema::create('contacto', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
             $table->integer('id_producto')->unsigned();
             $table->integer('id_proveedor')->unsigned();
         });

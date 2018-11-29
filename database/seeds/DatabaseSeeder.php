@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {      
         DB::table('cliente')->insert([
             ['nombre' => 'Antonia A. Daraban Alfambra',
             'telefono' => '98526476',
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             ],
             ['nombre' => 'motora two',
             'precio' => 50000,
-            'stock' => 1,
+            'stock' => 4,
             ],
             ['nombre' => 'motora three',
             'precio' => 15000,
@@ -54,11 +54,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('usuario')->insert([
-            ['activo' => '1',
-            'email' => 1,
-            'id_permiso' => 1,
-            'name' => '',
-            'password' => '1234test',
+            ['name' => 'Administrador',
+            'email' => 'pablo.cancino@usach.cl',
+            'password' => '12345',
+            'id_permiso' => '1',
+            ],
+        ]);
+        
+        DB::table('proveedor')->insert([
+            ['nombre' => 'Fernando C.',
+            'telefono' => '88883644',
+            'direccion' => 'Tobalaba No. 354, Metropolitana de Santiago',
+            'suministro' => 'Tela',
+            'correo' => 'fernando.c@gmail.com',
             ],
         ]);
 

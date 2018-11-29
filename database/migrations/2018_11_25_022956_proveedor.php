@@ -20,6 +20,7 @@ class Proveedor extends Migration
             $table->string('direccion');
             $table->string('suministro');
             $table->string('correo');
+            $table->timestamps();
         });
     }
 

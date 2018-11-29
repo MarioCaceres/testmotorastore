@@ -16,6 +16,7 @@ class DetalleVenta extends Migration
         Schema::create('detalle_venta', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cantidad');
+            $table->timestamps();
             $table->integer('id_producto')->unsigned();
             $table->integer('id_venta')->unsigned();
 

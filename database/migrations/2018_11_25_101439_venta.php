@@ -19,6 +19,7 @@ class Venta extends Migration
             $table->date('fecha');
             $table->integer('estado');
             $table->integer('n_orden');
+            $table->timestamps();
             $table->integer('id_usuario')->unsigned();
             $table->integer('id_cliente')->unsigned();
         });

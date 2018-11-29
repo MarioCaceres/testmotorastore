@@ -16,6 +16,7 @@ class Permiso extends Migration
         Schema::create('permiso', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tipo');
+            $table->timestamps();
         });
     }
     /**

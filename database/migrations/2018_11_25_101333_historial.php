@@ -9,7 +9,7 @@ class Historial extends Migration
 
     public function up()
     {
-        Schema::create('historal', function (Blueprint $table) {
+        Schema::create('historial', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
             $table->string('descripcion');
@@ -17,9 +17,10 @@ class Historial extends Migration
             $table->string('estado_nuevo');
             $table->string('tabla');
             $table->string('atributo');
+            $table->timestamps();
             $table->integer('id_usuario')->unsigned();
         });
-        Schema::table('historal', function($table) {
+        Schema::table('historial', function($table) {
             $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
         });
     }
@@ -31,6 +32,6 @@ class Historial extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historal');
+        Schema::dropIfExists('historial');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\cliente;
 use Validator;
 use Session;
@@ -56,7 +57,7 @@ class clienteController extends Controller
 
             // redirect
             Session::flash('message', 'Cliente creado con éxito!');
-            return redirect()->route('clienteController.clients');
+            return redirect('dashboard')->route('clienteController.clients');
         }
     }
     public function show()

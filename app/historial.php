@@ -14,7 +14,7 @@ class historial extends Model
         'estado_nuevo',
         'tabla',
         'atributo',
-        'id_users'
+        'id_usuario'
     ];
     
     public function users()

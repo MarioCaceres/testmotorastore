@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\historial;
 
 class historialController extends Controller
 {
@@ -14,18 +16,25 @@ class historialController extends Controller
         $historial_usuarios = historial::orderBy('fecha','ASC')->paginate(100);
         return view('recent-activity', compact('historial_usuarios','users'));
     }
-    public function registrar($tabla, $descripcion, $atributo, $antiguo, $nuevo)
+    public function registrar($tabla, $descripcion, $atributo, $antiguo, $nuevo, $id)
     {
-
+        echo $id;
+        return 0;
+        if($id == '[]'){
+           $idUser = 1; 
+        }
+        else{
+            $idUser = $id;
+        }
         $historial = new historial();
         $dateTime = Carbon::now();
-        $historial->id_usuario = Auth::user()->id;
         $historial->fecha = $dateTime;
-        $historial->tabla = $tabla;
         $historial->descripcion = $descripcion;
-        $historial->atributo = $atributo;
         $historial->estado_anterior = $antiguo;
         $historial->estado_nuevo = $nuevo;
+        $historial->tabla = $tabla;
+        $historial->atributo = $atributo;
+        $historial->id_usuario = $idUser;
         $historial->save();
     }
 }

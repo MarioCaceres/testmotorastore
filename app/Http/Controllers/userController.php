@@ -10,11 +10,11 @@ class userController extends Controller
     public function index()
     {
         $users = User::orderBy('id','ASC')->paginate(100);
-        return view('users.index', compact('users'));
+        return view('user-admin', compact('users'));
     }
     public function create()
     {
-		return view('users.create');
+		return view('dashboard');
     }
     public function store(Request $request)
     {
@@ -22,16 +22,16 @@ class userController extends Controller
             $user = new User($request->all());
             $user->password = bcrypt($request->input('password'));
             $user->save();
-            return redirect('')->with('alert', 'Usuario creado exitosamente!');
+            return redirect('dashboard')->with('alert', 'Usuario creado exitosamente!');
         }
         catch(\Illuminate\Database\QueryException $e){
-            return redirect('')->with('alert', 'Error, intente denuevo!');
+            return redirect('dashboard')->with('alert', 'Error, intente denuevo!');
         }
     }
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show', compact('user'));
+        return view('user-admin', compact('user'));
     }
     public function edit()
     {
@@ -45,7 +45,7 @@ class userController extends Controller
         $historial->registrar("usuario", "modificar tipo","tipo",$user->tipo, $atributo);
         $user->tipo = $atributo;
         $user->save();
-        return redirect()->route('users.index')->with('success', true)->with('message','Usuario modificado exitosamente');
+        return redirect()->route('user-admin')->with('success', true)->with('message','Usuario modificado exitosamente');
 
         
     }
@@ -56,7 +56,7 @@ class userController extends Controller
         $historial->registrar("usuario", "activar usuario","activo", "1", "0");
         $user->activo =1;
         $user->save();
-        return redirect()->route('users.index')->with('success', true)->with('message','Usuario activado exitosamente');
+        return redirect()->route('user-admin')->with('success', true)->with('message','Usuario activado exitosamente');
 
     }
     public function desactivar()
@@ -66,7 +66,7 @@ class userController extends Controller
         $historial->registrar("usuario", "bloquear usuario","activo", "0", "1");
         $user->activo =0;
         $user->save();
-        return redirect()->route('users.index')->with('success', true)->with('message','Usuario bloqueado exitosamente');
+        return redirect()->route('user-admin')->with('success', true)->with('message','Usuario bloqueado exitosamente');
 
     }
 }
