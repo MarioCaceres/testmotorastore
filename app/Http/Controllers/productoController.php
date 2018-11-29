@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\producto;
 use App\User;
+use App\Notifications\envioCorreo;
 
 class productoController extends Controller
 {
@@ -39,7 +40,7 @@ class productoController extends Controller
         $historial->registrar("producto", "modificar precio","precio",$producto->precio, $atributo,Auth::id());
         $producto->precio = $atributo;
         $producto->save();
-        return redirect()->route('users.index')->with('success', true)->with('message','Producto modificado exitosamente');
+        return redirect()->route('/home')->with('success', true)->with('message','Producto modificado exitosamente');
     }
     public function modificarstock($id_producto,$atributo)
     {
@@ -53,7 +54,7 @@ class productoController extends Controller
             $correo->notify(new EnvioCorreo($producto));
         }
         
-        return redirect()->route('dashboard')->with('success', true)->with('message','Producto modificado exitosamente');
+        return redirect()->route('/home')->with('success', true)->with('message','Producto modificado exitosamente');
     }
     public function editarNombre($id_producto,$atributo)
     {
@@ -62,7 +63,7 @@ class productoController extends Controller
         $historial->registrar("producto", "modificar nombre","nombre",$producto->nombre, $atributo,Auth::id());
         $producto->nombre = $atributo;
         $producto->save();
-        return redirect()->route('dashboard')->with('success', true)->with('message','Producto modificado exitosamente');
+        return redirect()->route('/home')->with('success', true)->with('message','Producto modificado exitosamente');
     }
     public function destroy()
     {

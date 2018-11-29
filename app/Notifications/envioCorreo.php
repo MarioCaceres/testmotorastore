@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\producto;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +18,7 @@ class envioCorreo extends Notification
      *
      * @return void
      */
-    public function __construct(stock $e)
+    public function __construct(producto $e)
     {
         $this->e=$e;
     }
@@ -46,6 +47,7 @@ class envioCorreo extends Notification
                     ->line($notifiable->nombre)
                     ->line("Un producto a disminuido sus existencias y necesita de su atencion.")
                     ->action('Ir al inventario',url('http://127.0.0.1:8000/'))
+                    ->line('Gracias por su atencion');
 
     }
 

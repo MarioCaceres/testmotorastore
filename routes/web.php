@@ -33,7 +33,7 @@ Route::view('/new-sale-client', 'new-sale-client');
 //Route::name
 
 Auth::routes();
-Route::get('/home', 'apiController@saveApiData')->name('home');
+#Route::get('/home', 'apiController@saveApiData')->name('home');
 #Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sales','ventaController@index')->name('ventaController.index');
 
