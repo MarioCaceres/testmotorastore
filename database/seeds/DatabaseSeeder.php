@@ -43,14 +43,41 @@ class DatabaseSeeder extends Seeder
             'precio' => 30000,
             'stock' => 10,
             ],
-        ]);
-        
-        DB::table('proveedor')->insert([
-            ['nombre' => 'motora one',
-            'precio' => 30000,
-            'stock' => 10,
+            ['nombre' => 'motora two',
+            'precio' => 50000,
+            'stock' => 1,
             ],
-        ]); 
+            ['nombre' => 'motora three',
+            'precio' => 15000,
+            'stock' => 0,
+            ],
+        ]);
+
+        DB::table('usuario')->insert([
+            ['activo' => '1',
+            'email' => 1,
+            'id_permiso' => 1,
+            'name' => '',
+            'password' => '1234test',
+            ],
+        ]);
+
+        DB::table('venta')->insert([
+            ['canal' => '1',
+            'estado' => 1,
+            'fecha' => '2018-06-15',
+            'id_cliente' => 1,
+            'id_usuario' => 1,
+            'n_orden' => 10,
+            ],
+        ]);
+
+        DB::table('detalle_venta')->insert([
+            ['cantidad' => 1,
+            'id_producto' => 1,
+            'id_venta' => 1,
+            ],
+        ]);
 
     }
 }
