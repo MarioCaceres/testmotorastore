@@ -14,7 +14,9 @@ class ventaController extends Controller
 {
     public function index()
     {
-
+        $ventas = venta::all();
+        $detalles = $ventas = detalle_venta::all();
+        return view('sales',compact('ventas','detalles'));
     }
     public function create()
     {
@@ -79,7 +81,8 @@ class ventaController extends Controller
         $cliente = cliente::find($id_cliente);
         $productos = producto::all();
         $texto_boton = "Agregar Producto(s)";
-        return view('new-sale',compact('productos','cliente','texto_boton','id_cliente_actual','carrito'))->with('id_cliente',$id_cliente);
+        $lleno = 0;
+        return view('new-sale',compact('productos','cliente','texto_boton','id_cliente_actual','carrito','lleno'))->with('id_cliente',$id_cliente);
     }
 
     public function addItem($id_cliente,Request $request){
@@ -101,6 +104,40 @@ class ventaController extends Controller
             }
         }
         $texto_boton = "Modificar Producto(s)";
-        return view('new-sale',compact('productos','cliente','texto_boton','id_cliente_actual','carrito'))->with('id_cliente',$id_cliente);
+        $lleno = 1;
+        
+        session()->put('carro_compras',$carrito);
+        session()->put('cliente_sesion',$id_cliente);
+        return view('new-sale',compact('productos','cliente','texto_boton','id_cliente_actual','carrito','lleno'))->with('id_cliente',$id_cliente);
+    }
+
+    public function saveSale(){
+        
+        $carrito = session()->get('carro_compras');
+        $id_cliente = session()->get('cliente_sesion');
+        //dd($carrito);
+        $venta = new venta();
+        $venta->id_usuario = 1;
+        $venta->id_cliente = $id_cliente;
+        $venta->estado = 1;
+        $venta->fecha = date("Y/m/d");
+        $venta->canal = 1;
+        $venta->n_orden = 0;
+        $venta->save();
+
+        $id_venta = $venta->id;
+        foreach ($carrito as $key => $item) {
+            $detalleventa = new detalle_venta();
+            $detalleventa->id_producto= $key;
+            $detalleventa->id_venta=$id_venta;
+            $detalleventa->cantidad=$item->cantidad;
+            $detalleventa->save();
+
+            $prod = producto::find($key);
+            $prod->stock = $prod->stock - $item->cantidad;
+            $prod->save();
+        }
+        return view('sales');
+
     }
 }

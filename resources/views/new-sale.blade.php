@@ -138,7 +138,74 @@
 
 
                             </div>
-                            <a href="forms-basic.html" type="button" class="btn btn-primary">Añadir Venta</a>
+                            
+                            
+
+                            <!-- Button trigger modal -->
+                                
+                                <button type="button" <?php if ($lleno == '0'){ ?> disabled <?php   } ?> class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">
+                                  Ingresar Venta
+                                </button>
+                                
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar Venta</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                    
+                                      <div class="modal-body">
+                                        <h3>Está seguro que quiere ingresar la siguiente venta?</h3>
+                                        <br><br>
+                                        <table class="table">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">#</th>
+                                              <th scope="col">Producto</th>
+                                              <th scope="col">Cantidad</th>
+                                              <th scope="col">Precio Unitario</th>
+                                              <th scope="col">Total</th>
+                                              <th scope="col"></th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            @php($total = 0)
+                                            @foreach($carrito as $key=>$item)
+
+                                                        <tr>
+                                                            <th scope="row">{{$key+1}}</th>
+                                                            <td>{{$item->nombre}}</td>
+                                                            <td>{{$item->cantidad}}</td>
+                                                            <td>{{$item->precio}}</td>
+                                                            <td>{{$item->total}}</td>
+                                                        </tr>
+                                                        @php($total+=intval($item->total))
+                                            @endforeach
+                                            
+                                            
+                                          </tbody>
+                                        </table>
+                                        <div align="center">
+                                        <h3><b>Total: {{$total}}</b></h3>
+                                        </div>
+                                            
+                                      
+                                      </div>
+                                    
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <a type="button" class="btn btn-primary" href="{{ route('ventaController.saveSale')}}">Confirmar Venta</a>
+                                      </div>
+                                    
+                                    </div>
+                                  </div>
+                                </div>
+                            
                         </div>
                     </div>
 

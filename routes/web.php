@@ -35,9 +35,11 @@ Route::view('/new-sale-client', 'new-sale-client');
 Auth::routes();
 Route::get('/home', 'apiController@saveApiData')->name('home');
 #Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/sales','ventaController@index')->name('ventaController.index');
 
 Route::get('/new-sale-client', 'clienteController@index')->name('clienteController.clients');
 Route::get('/new-sale/{id_cliente}', 'ventaController@new')->name('ventaController.new');
+Route::get('/new-sale', 'ventaController@saveSale')->name('ventaController.saveSale');
 
 Route::post('/new-sale-client', 'clienteController@store')->name('clienteController.store');
 Route::post('/new-sale/{id_cliente}', 'ventaController@addItem')->name('ventaController.addItem');
